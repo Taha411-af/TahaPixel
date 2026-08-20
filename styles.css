@@ -1,0 +1,15 @@
+/* ساده و روان */
+body { font-family: Tahoma, Arial, sans-serif; direction: rtl; background:#f8f8f8; color:#222; margin:0; padding:20px; }
+header { background:#fff; padding:16px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
+header h1 { margin:0 0 6px 0; }
+.links { margin-top:8px; }
+.links a { color:#0366d6; text-decoration:none; }
+main { margin-top:16px; }
+#videos-list { display:flex; flex-wrap:wrap; gap:12px; }
+.video-item { display:flex; gap:12px; align-items:center; background:#fff; padding:8px; border-radius:8px; text-decoration:none; color:inherit; width:100%; max-width:420px; box-shadow:0 1px 3px rgba(0,0,0,0.05); }
+.video-item:hover { transform:translateY(-2px); }
+.thumb { width:160px; height:90px; object-fit:cover; border-radius:4px; }
+.video-item .info h3 { margin:0; font-size:16px; }
+.note { color:#555; font-size:14px; }
+footer { margin-top:20px; font-size:13px; color:#666; }
+@media (max-width:520px){ .video-item{ max-width:100%; } .thumb{ width:120px; height:68px; } }
