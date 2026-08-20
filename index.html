@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>سایت Taha Pixel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>سلام! این صفحهٔ رسمی Taha Pixel</h1>
+    <p>خوش آمدی — اینجا لینک کانال‌ها و ویدیوها را می‌بینی.</p>
+    <p class="links">
+      <a href="https://rubika.ir/taha_pixel" target="_blank" rel="noopener noreferrer">کانال روبیکا</a>
+      |
+      <a href="https://www.aparat.com/Taha_Pixel565" target="_blank" rel="noopener noreferrer">کانال آپارات</a>
+    </p>
+  </header>
+
+  <main>
+    <section id="videos">
+      <h2>ویدیوها</h2>
+      <p class="note">برای اضافه کردن ویدیو جدید، فایل videos.json را ویرایش کن یا لینک و تامنیل را به من بفرست.</p>
+      <div id="videos-list">در حال بارگذاری...</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© Taha Pixel</p>
+  </footer>
+
+  <script>
+    // بارگذاری لیست ویدیوها از فایل videos.json و نمایش ساده
+    function createVideoCard(v) {
+      const a = document.createElement('a');
+      a.href = v.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'video-item';
+
+      const img = document.createElement('img');
+      img.src = v.thumbnail;
+      img.alt = v.title;
+      img.className = 'thumb';
+      a.appendChild(img);
+
+      const div = document.createElement('div');
+      div.className = 'info';
+      const h3 = document.createElement('h3');
+      h3.textContent = v.title;
+      div.appendChild(h3);
+      a.appendChild(div);
+
+      return a;
+    }
+
+    fetch('videos.json')
+      .then(r => r.json())
+      .then(list => {
+        const container = document.getElementById('videos-list');
+        container.innerHTML = '';
+        if (!list || list.length === 0) {
+          container.textContent = 'هنوز ویدیویی اضافه نشده.';
+          return;
+        }
+        list.forEach(v => {
+          container.appendChild(createVideoCard(v));
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('videos-list').textContent = 'خطا در بارگذاری ویدیوها.';
+      });
+  </script>
+</body>
+</html>
